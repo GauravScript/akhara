@@ -168,23 +168,138 @@
 
     <!-- Bottom Navigation Bar (App Bar) -->
     <nav class="absolute bottom-0 left-0 right-0 glass-nav border-t border-neutral-800 px-6 py-3 flex justify-between items-center z-30">
-      <button class="flex flex-col items-center space-y-1 text-amber-400">
+      <button onclick="switchTab('shop', this)" class="nav-btn flex flex-col items-center space-y-1 text-amber-400">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
         <span class="text-[9px] font-bold">Shop</span>
       </button>
-      <button class="flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition">
+      <button onclick="switchTab('drops', this)" class="nav-btn flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         <span class="text-[9px] font-medium">Drops</span>
       </button>
-      <button onclick="openCart()" class="flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition relative">
+      <button onclick="openCart()" class="nav-btn flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition relative">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
         <span class="text-[9px] font-medium">Bag</span>
       </button>
-      <button class="flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition">
+      <button onclick="openProfile()" class="nav-btn flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
         <span class="text-[9px] font-medium">Profile</span>
       </button>
     </nav>
+
+    <!-- User Profile Modal (Full Gen Z / Millennial VIP Account Center) -->
+    <div id="profileModal" class="absolute inset-0 bg-neutral-950/85 backdrop-blur-md z-50 hidden flex flex-col justify-end">
+      <div class="w-full bg-neutral-900 border-t border-neutral-800 rounded-t-[32px] p-5 h-[88%] flex flex-col overflow-y-auto no-scrollbar">
+        <!-- Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-neutral-800">
+          <h3 class="text-sm font-bold text-white uppercase tracking-wider">VIP Member Account</h3>
+          <button onclick="closeProfile()" class="text-neutral-400 hover:text-white p-1">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- User Card -->
+        <div class="mt-4 p-4 rounded-2xl bg-gradient-to-br from-neutral-850 to-neutral-900 border border-neutral-800 flex items-center space-x-3.5">
+          <div class="relative">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-amber-500 to-amber-200 p-0.5">
+              <div class="w-full h-full rounded-full bg-neutral-900 flex items-center justify-center text-amber-300 font-extrabold text-lg">
+                G
+              </div>
+            </div>
+            <span class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-neutral-900 rounded-full"></span>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center space-x-2">
+              <h4 class="text-sm font-extrabold text-white">Gaurav Sharma</h4>
+              <span class="text-[9px] px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold">GOLD TIER</span>
+            </div>
+            <p class="text-xs text-neutral-400 mt-0.5">+91 98765 43210</p>
+            <p class="text-[10px] text-amber-400 font-medium mt-1">✦ 1,450 Akhara Coins (₹145 off)</p>
+          </div>
+        </div>
+
+        <!-- Order & Delivery Status -->
+        <div class="mt-4">
+          <h5 class="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-2">Active Order</h5>
+          <div class="p-3 rounded-xl bg-neutral-850 border border-neutral-800 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <img src="assets/images/desi_gym_pump_tee_1789228870689.jpg" class="w-11 h-13 object-cover rounded-lg bg-neutral-900">
+              <div>
+                <p class="text-xs font-bold text-white">The Akhara Gada Tee (L)</p>
+                <p class="text-[10px] text-emerald-400 font-semibold mt-0.5">● Out for Delivery (Arriving Today)</p>
+              </div>
+            </div>
+            <button onclick="alert('Tracking ID: BLUEDART-AKH-99201948 - Out for delivery in Mumbai')" class="text-[10px] font-bold text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-lg border border-amber-400/20">Track</button>
+          </div>
+        </div>
+
+        <!-- Quick Preferences -->
+        <div class="mt-4 space-y-2">
+          <h5 class="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-2">Account Settings</h5>
+
+          <div class="p-3 rounded-xl bg-neutral-850 border border-neutral-800 flex items-center justify-between cursor-pointer hover:border-neutral-700 transition">
+            <div class="flex items-center space-x-3">
+              <span class="text-neutral-400">📦</span>
+              <div>
+                <p class="text-xs font-semibold text-white">Saved Addresses</p>
+                <p class="text-[10px] text-neutral-500">Bandra West, Mumbai (Default)</p>
+              </div>
+            </div>
+            <span class="text-xs text-neutral-500">›</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-neutral-850 border border-neutral-800 flex items-center justify-between cursor-pointer hover:border-neutral-700 transition">
+            <div class="flex items-center space-x-3">
+              <span class="text-neutral-400">💳</span>
+              <div>
+                <p class="text-xs font-semibold text-white">Saved Payment Methods</p>
+                <p class="text-[10px] text-neutral-500">Google Pay / UPI & HDFC Card</p>
+              </div>
+            </div>
+            <span class="text-xs text-neutral-500">›</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-neutral-850 border border-neutral-800 flex items-center justify-between cursor-pointer hover:border-neutral-700 transition">
+            <div class="flex items-center space-x-3">
+              <span class="text-neutral-400">📏</span>
+              <div>
+                <p class="text-xs font-semibold text-white">Body Measurement Profile</p>
+                <p class="text-[10px] text-amber-400">Recommended Size: L (Chest 42")</p>
+              </div>
+            </div>
+            <span class="text-xs text-neutral-500">›</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-neutral-850 border border-neutral-800 flex items-center justify-between cursor-pointer hover:border-neutral-700 transition">
+            <div class="flex items-center space-x-3">
+              <span class="text-neutral-400">🔔</span>
+              <div>
+                <p class="text-xs font-semibold text-white">Drop Alerts & VIP Early Access</p>
+                <p class="text-[10px] text-emerald-400">Push notifications enabled</p>
+              </div>
+            </div>
+            <span class="text-xs text-neutral-500">›</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-neutral-850 border border-neutral-800 flex items-center justify-between cursor-pointer hover:border-neutral-700 transition">
+            <div class="flex items-center space-x-3">
+              <span class="text-neutral-400">💬</span>
+              <div>
+                <p class="text-xs font-semibold text-white">WhatsApp VIP Concierge</p>
+                <p class="text-[10px] text-neutral-500">Instant returns & styling help</p>
+              </div>
+            </div>
+            <span class="text-xs text-neutral-500">›</span>
+          </div>
+        </div>
+
+        <!-- Log Out / Switch Account -->
+        <button onclick="alert('You are securely logged into your VIP account.')" class="w-full py-2.5 mt-5 rounded-xl border border-red-500/30 text-red-400 text-xs font-bold hover:bg-red-500/10 transition">
+          Sign Out / Switch Account
+        </button>
+
+        <p class="text-[9px] text-center text-neutral-600 mt-4">AKHARA CLUB App v2.4 • Made with Pride in Bharat</p>
+      </div>
+    </div>
 
     <!-- Product Detail Modal (Pop-up from Bottom) -->
     <div id="productModal" class="absolute inset-0 bg-neutral-950/80 backdrop-blur-md z-40 hidden flex flex-col justify-end transition-opacity duration-300">
@@ -263,7 +378,11 @@
         price: 1899,
         originalPrice: 2499,
         image: "assets/images/desi_gym_pump_tee_1789228870689.jpg",
-        description: "260 GSM vintage-washed French terry cotton. Features sacred mandala geometry framing the traditional Indian Akhara Gada (mace) and 'शक्ति और समर्पण' calligraphy.",
+        gallery: [
+          "assets/images/desi_gym_pump_tee_1789228870689.jpg",
+          "assets/images/akhara_sacred_logo.jpg"
+        ],
+        description: "260 GSM vintage-washed French terry cotton in deep charcoal black. Features sacred mandala geometry framing the traditional Indian Akhara Gada and 'शक्ति और समर्पण' calligraphy.",
         features: ["260 GSM Heavy Terry", "Drop-shoulder Oversized Fit", "High-density Screenprint", "Pre-shrunk Vintage Wash"],
         sizes: ["M", "L", "XL", "XXL"]
       },
@@ -275,7 +394,10 @@
         price: 2699,
         originalPrice: 3499,
         image: "assets/images/women_mandala_set_1789229190657.jpg",
-        description: "Terracotta high-waisted squat-proof leggings and longline bra set. Contouring mandala lattice placement highlights natural athletic silhouette.",
+        gallery: [
+          "assets/images/women_mandala_set_1789229190657.jpg"
+        ],
+        description: "Terracotta dusty-rose high-waisted squat-proof leggings and longline bra set. Contouring mandala lattice placement highlights natural athletic silhouette.",
         features: ["Squat-Tested 100% Opaque", "High-Rise No-Roll Waistband", "Buttery Soft 4-Way Flex", "Sweat-Wicking Anti-Microbial"],
         sizes: ["XS", "S", "M", "L"]
       },
@@ -287,6 +409,9 @@
         price: 2499,
         originalPrice: 3199,
         image: "assets/images/women_shakti_cropped_1789229209368.jpg",
+        gallery: [
+          "assets/images/women_shakti_cropped_1789229209368.jpg"
+        ],
         description: "Sage green raw-cut French terry crop hoodie with gold Devanagari 'शक्ति' script, paired with compressive biker shorts featuring dual phone pockets.",
         features: ["Raw Cut Edge Hem", "Biker Shorts with Deep Pockets", "Breathable Cotton Blend", "Subtle Paisley Sleeve Detailing"],
         sizes: ["XS", "S", "M", "L"]
@@ -299,6 +424,9 @@
         price: 2999,
         originalPrice: 3999,
         image: "assets/images/ajrakh_compression_wear_1789228887908.jpg",
+        gallery: [
+          "assets/images/ajrakh_compression_wear_1789228887908.jpg"
+        ],
         description: "Elite muscle-support compression top & shorts. Features authentic Kutch/Sindhi Ajrakh geometric star panels along natural muscle lines.",
         features: ["Zonal Targeted Compression", "Sublimation Stretch Print", "Flatlock Anti-Chafe Seams", "Quick-Dry Tech Poly-Elastane"],
         sizes: ["S", "M", "L", "XL"]
@@ -311,6 +439,9 @@
         price: 2899,
         originalPrice: 3699,
         image: "assets/images/women_kalamkari_set_1789229234783.jpg",
+        gallery: [
+          "assets/images/women_kalamkari_set_1789229234783.jpg"
+        ],
         description: "Midnight onyx high-neck strappy halter sports bra paired with high-rise sculpting tights. Accented with metallic bronze Kalamkari vine line-art.",
         features: ["High-Impact Support", "Sculpting Core Waistband", "Metallic Bronze Foil Accent", "Zero Front-Seam Pattern"],
         sizes: ["XS", "S", "M", "L"]
@@ -576,6 +707,29 @@
         return;
       }
       alert("🎉 Proceeding to secure checkout! Razorpay / UPI & Cash on Delivery (COD) enabled.");
+    }
+
+    function openProfile() {
+      document.getElementById('profileModal').classList.remove('hidden');
+    }
+
+    function closeProfile() {
+      document.getElementById('profileModal').classList.add('hidden');
+    }
+
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        b.className = 'nav-btn flex flex-col items-center space-y-1 text-neutral-400 hover:text-white transition';
+      });
+      btn.className = 'nav-btn flex flex-col items-center space-y-1 text-amber-400';
+
+      if (tab === 'drops') {
+        filterCategory('all', document.querySelector('.cat-btn'));
+        document.getElementById('mainScrollArea').scrollTo({ top: 0, behavior: 'smooth' });
+        showToast("Showing exclusive limited batch drops");
+      } else if (tab === 'shop') {
+        document.getElementById('productGridContainer').scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     renderProducts();
