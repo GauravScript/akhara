@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="AKHARA">
-  <link rel="apple-touch-icon" href="assets/images/desi_gym_pump_tee_1789228870689.jpg">
+  <link rel="apple-touch-icon" href="assets/images/akhara_sacred_logo.jpg">
   <link rel="manifest" href="manifest.json">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,14 +67,12 @@
     <!-- Top App Bar -->
     <header class="w-full px-5 py-3 flex items-center justify-between z-20 glass-nav border-b border-neutral-800/80">
       <div class="flex items-center space-x-3">
-        <button class="p-1.5 rounded-full hover:bg-neutral-800 transition text-neutral-300">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-        </button>
+        <img src="assets/images/akhara_sacred_logo.jpg" alt="Akhara Logo" class="w-9 h-9 rounded-full border border-amber-400/50 object-cover shadow-lg">
         <div>
-          <h1 class="brand-font text-lg font-bold tracking-widest text-white flex items-center">
-            AKHARA <span class="text-[9px] ml-1.5 px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-sans tracking-normal font-semibold">CLUB</span>
+          <h1 class="brand-font text-base font-bold tracking-widest text-white flex items-center">
+            AKHARA <span class="text-[8px] ml-1.5 px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-sans tracking-normal font-semibold">CLUB</span>
           </h1>
-          <p class="text-[9px] text-neutral-400 font-medium -mt-1 tracking-wider uppercase">Heritage Performance</p>
+          <p class="text-[8px] text-neutral-400 font-medium -mt-0.5 tracking-wider uppercase">Heritage Athleisure</p>
         </div>
       </div>
 
@@ -316,6 +314,37 @@
         description: "Midnight onyx high-neck strappy halter sports bra paired with high-rise sculpting tights. Accented with metallic bronze Kalamkari vine line-art.",
         features: ["High-Impact Support", "Sculpting Core Waistband", "Metallic Bronze Foil Accent", "Zero Front-Seam Pattern"],
         sizes: ["XS", "S", "M", "L"]
+      },
+      {
+        id: 6,
+        name: "The Crimson Rajput Cross-Back Set",
+        tag: "HOT DROP 🔥",
+        category: "women",
+        price: 2999,
+        originalPrice: 3899,
+        image: "assets/images/women_crimson_desi_gym_1789236941605.jpg",
+        gallery: [
+          "assets/images/women_crimson_desi_gym_1789236941605.jpg",
+          "assets/images/crimson_angle_back.jpg"
+        ],
+        description: "Seductive deep crimson red plunge cross-back halter bra and sculpted V-cut waist tights. Intricate metallic champagne-gold Rajasthani Jharokha line-art contours the hips and bust.",
+        features: ["Crossover V-Contour Waistband", "Double-Lined Plunge Support", "Gold Filigree Jharokha Art", "Squat-Tested 100% Opaque"],
+        sizes: ["XS", "S", "M", "L"]
+      },
+      {
+        id: 7,
+        name: "The Ruby One-Shoulder Biker Set",
+        tag: "AESTHETIC CRUSH",
+        category: "women",
+        price: 2599,
+        originalPrice: 3299,
+        image: "assets/images/women_ruby_biker_set_1789236964617.jpg",
+        gallery: [
+          "assets/images/women_ruby_biker_set_1789236964617.jpg"
+        ],
+        description: "Asymmetrical one-shoulder crop top in ruby red & onyx colorblock with Banarasi geometric gold piping, paired with scrunch sculpting biker shorts.",
+        features: ["Asymmetrical Sculpt Cut", "Deep Phone Side Pockets", "Booty-Sculpting Seams", "Silky Compressive Nylon-Elastane"],
+        sizes: ["XS", "S", "M", "L"]
       }
     ];
 
@@ -375,12 +404,22 @@
       const content = document.getElementById('modalContent');
 
       content.innerHTML = `
-        <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-950 mb-4">
-          <img src="${selectedProduct.image}" alt="${selectedProduct.name}" class="w-full h-full object-cover">
+        <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-950 mb-2">
+          <img id="modalMainImg" src="${selectedProduct.image}" alt="${selectedProduct.name}" class="w-full h-full object-cover transition-opacity duration-300">
           <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-neutral-950/80 backdrop-blur-md border border-neutral-700 text-amber-400 text-[10px] font-bold">
             ${selectedProduct.tag}
           </div>
         </div>
+
+        ${selectedProduct.gallery && selectedProduct.gallery.length > 1 ? `
+          <div class="flex space-x-2 mb-3 overflow-x-auto no-scrollbar">
+            ${selectedProduct.gallery.map((g, idx) => `
+              <button onclick="document.getElementById('modalMainImg').src='${g}'; document.querySelectorAll('.thumb-btn').forEach(b=>b.classList.remove('border-amber-400')); this.classList.add('border-amber-400');" class="thumb-btn w-14 h-16 rounded-lg overflow-hidden border-2 ${idx === 0 ? 'border-amber-400' : 'border-neutral-800'} transition flex-shrink-0">
+                <img src="${g}" class="w-full h-full object-cover">
+              </button>
+            `).join('')}
+          </div>
+        ` : ''}
 
         <div class="flex items-start justify-between">
           <div>
