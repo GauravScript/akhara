@@ -1,0 +1,17 @@
+{
+  "name": "AKHARA CLUB",
+  "short_name": "AKHARA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#0a0a0c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/images/desi_gym_pump_tee_1789228870689.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
